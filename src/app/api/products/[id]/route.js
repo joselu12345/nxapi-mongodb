@@ -25,14 +25,7 @@ export async function PUT(request, { params }) {
     const { nombre, precio, fecha_alta, foto } = await request.json() // Read body request
     const results = await collection.updateOne({ _id: new ObjectId(id) }, { $set: { nombre, precio, fecha_alta, foto } });
 
-    return Response(JSON.stringify(results),{
-        status: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        },
-      } );
+    return Response.json(results);
 }
 
 

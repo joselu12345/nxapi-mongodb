@@ -3,7 +3,7 @@ import { ObjectId } from "mongodb";
 
 export async function GET(request, { params }) {
     const { database } = await connectToDatabase();
-    const collection = database.collection(process.env.MONGODB_COLLECTION);
+    const collection = database.collection(process.env.MONGODB_COLLECTION_USERS);
 
     const { id } = await params
     const results = await collection.find({ _id: new ObjectId(id) }).toArray()
@@ -19,7 +19,7 @@ export async function PUT(request, { params }) {
         return Response.json({ message: 'Debes proporcionar datos JSON' })
 
     const { database } = await connectToDatabase();
-    const collection = database.collection(process.env.MONGODB_COLLECTION);
+    const collection = database.collection(process.env.MONGODB_COLLECTION_USERS);
 
     const { id } = await params
     const { nombre, edad } = await request.json() // Read body request
@@ -31,7 +31,7 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
     const { database } = await connectToDatabase();
-    const collection = database.collection(process.env.MONGODB_COLLECTION);
+    const collection = database.collection(process.env.MONGODB_COLLECTION_USERS);
 
     const { id } = await params
     const results = await collection.deleteOne({ _id: new ObjectId(id) })

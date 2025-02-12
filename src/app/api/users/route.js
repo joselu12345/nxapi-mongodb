@@ -2,7 +2,7 @@ import { connectToDatabase } from "@/lib/mongodb";
 
 export async function GET(request) {
     const { database } = await connectToDatabase();
-    const collection = database.collection(process.env.MONGODB_COLLECTION);
+    const collection = database.collection(process.env.MONGODB_COLLECTION_USERS);
 
     const results = await collection.find({}).toArray();
 
@@ -16,7 +16,7 @@ export async function POST(request) {
         return Response.json({ message: 'Debes proporcionar datos JSON' })
 
     const { database } = await connectToDatabase();
-    const collection = database.collection(process.env.MONGODB_COLLECTION)
+    const collection = database.collection(process.env.MONGODB_COLLECTION_USERS)
 
     const { nombre, edad } = await request.json() // Read body request
     const results = await collection.insertOne({ nombre, edad });
